@@ -1,0 +1,12 @@
+nbproject
+._*
+.vagrant
+.~lock.*
+.buildpath
+.idea
+.project
+.settings
+vendor
+composer.phar
+data
+public
