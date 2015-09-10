@@ -1,27 +1,15 @@
 <?php
-// filename : module/Users/src/Users/Form/RegisterForm.php
+
 namespace Users\Form;
 
 use Zend\Form\Form;
 
-class RegisterForm extends Form {
+class LoginForm extends Form {
 
   public function __construct($name = null) {
-    parent::__construct('Register');
+    parent::__construct('Login');
     $this->setAttribute('method', 'post');
     $this->setAttribute('enctype', 'multipart/form-data');
-
-    $this->add(array(
-      'name' => 'name',
-      'attributes' => array(
-        'type' => 'text',
-        'required' => 'required'
-      ),
-      'options' => array(
-        'label' => 'Full Name',
-      ),
-    ));
-
 
     $this->add(array(
       'name' => 'email',
@@ -44,23 +32,12 @@ class RegisterForm extends Form {
         'label' => 'Password',
       ),
     ));
-
-    $this->add(array(
-      'name' => 'confirm_password',
-      'attributes' => array(
-        'type' => 'password',
-        'required' => 'required'
-      ),
-      'options' => array(
-        'label' => 'Confirm Password',
-      ),
-    ));
-
+    
     $this->add(array(
       'name' => 'submit',
       'attributes' => array(
         'type' => 'submit',
-        'value' => 'Register'
+        'value' => 'Login'
       ),
     ));
   }

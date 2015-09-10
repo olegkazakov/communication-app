@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Global Configuration Override
  *
@@ -12,5 +13,19 @@
  */
 
 return array(
-    // ...
+  'db' => array(
+    'driver' => 'Pdo',
+    'dsn' => 'mysql:dbname=zf_app;host=localhost',
+    'username' => 'zf_user',
+    'password' => 'zf_pass',
+    'driver_options' => array(
+      PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+    ),
+  ),
+  'service_manager' => array(
+    'factories' => array(
+      'Zend\Db\Adapter\Adapter'
+      => 'Zend\Db\Adapter\AdapterServiceFactory',
+    ),
+  ),
 );
