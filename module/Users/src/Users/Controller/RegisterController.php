@@ -54,15 +54,20 @@ class RegisterController extends AbstractActionController {
   }
 
   protected function createUser(array $data) {
+    /*
     $sm = $this->getServiceLocator();
     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     $resultSetPrototype = new ResultSet();
     $resultSetPrototype->setArrayObjectPrototype(new User());
     $tableGateway = new TableGateway('user', $dbAdapter, null, 
       $resultSetPrototype);
+    */
     $user = new User();
     $user->exchangeArray($data);
-    $userTable = new UserTable($tableGateway);
+    
+    $user->setPassword($data['password']);
+    
+    $userTable = $this->getServiceLocator()->get('UserTable');
     $userTable->saveUser($user);
     return true;
   }

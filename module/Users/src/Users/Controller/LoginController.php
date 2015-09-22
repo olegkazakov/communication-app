@@ -18,11 +18,7 @@ class LoginController extends AbstractActionController {
 
   public function getAuthService() {
     if (!$this->authservice) {
-      $dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-      $DbTableAuthAdapter = new DbTableAuthAdapter($dbAdapter, 'user', 'email', 'password', 'MD5(?)');
-      $authService = new AuthenticationService();
-      $authService->setAdapter($DbTableAuthAdapter);
-      $this->authservice = $authService;
+      $this->authservice = $this->getServiceLocator()->get('AuthService');
     }
     return $this->authservice;
   }
@@ -37,7 +33,7 @@ class LoginController extends AbstractActionController {
   }
 
   public function indexAction() {
-    $form = new LoginForm();
+    $form = $this->getServiceLocator()->get('LoginForm');
     $viewModel = new ViewModel(array('form' => $form));
     return $viewModel;
   }
@@ -52,7 +48,7 @@ class LoginController extends AbstractActionController {
 
     $post = $this->request->getPost();
 
-    $form = new LoginForm();
+    $form = $this->getServiceLocator()->get('LoginForm');
     $inputFilter = new LoginFilter();
     $form->setInputFilter($inputFilter);
 
